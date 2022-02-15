@@ -1,4 +1,4 @@
-var accessToken = 'BQDyFq8HnA8VvPQE2CoCyEFWQGYZ9Udkhc1TR_NWhdI_upBZ2jmy_Wyf2I1O1C-SUHeE3xDPl5ghHiq0UWgeKfx1UdcjqSvI8FlwLyACWOan22pKxHczIlp61MdKM_lhNhJIlB4JsN8O-es';
+var accessToken = 'BQD79_Y8fDhdLJJvpdTlKzWXf4NGphMnSRU79DR-6E9g1C1Fqq_ySwptgiuf1JoPoaUQ1TYBk_ToDGimpOv5wfcQH-Evu_8HD7Gbz04f_Ppdr3yYSplY3l-eFGMz-BhdmwTblwCIi1bNxDVmmYkG4w';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -35,18 +35,18 @@ form.addEventListener('submit', event => {
 function renderEachArtistsData(element) {
   // console.log(element.name, element.images[0]);
   let elementDiv = document.createElement('div');
-  
+  elementDiv.className = 'searchResults';
   let artistId = element.id;
   console.log(artistId);
 
   let img = document.createElement('img');
   img.src = element.images[0].url;
-
+  
   let name = document.createElement('p');
   name.textContent = element.name;
 
-  elementDiv.appendChild(name);
   elementDiv.appendChild(img);
+  elementDiv.appendChild(name);
   elementDiv.addEventListener('click', event => {
     // console.log('i was clicked!')
     fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
@@ -58,7 +58,11 @@ function renderEachArtistsData(element) {
       }
     })
     .then(response => response.json())
-    .then(artist => {
+    .then(artist => { 
+      console.log(artist);
+      let artistName = artist.name;
+      
+
       
     })
   })

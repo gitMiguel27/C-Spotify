@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+div#wholeBody {
+    background-image: linear-gradient(to bottom right, rgb(30, 112, 37), rgb(3, 10, 4));
+    height: 100%;
+    padding-left: 200px;
+    width: 100%;
+    position: absolute;
+}
+div#search { 
+    display: flex; 
+} 
+div#boxLeft { 
+    background-color: rgb(26, 26, 26); 
+    width: 200px; 
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+}
+h2 {
+    padding: 10px;
+}
+h1 {
+    padding: 10px;
+    color:white;
+    font-style: oblique;
+}
+form {
+    padding: 10px;
+}
+div.searchResults {
+    float: left;
+    padding: 10px;
+    padding-top: 12px;
+}
+div.searchResults img {
+    height: 50px;
+    width: auto;
+}
+div.searchResults p {
+    float: right;
+    padding-left: 5px;
+}
