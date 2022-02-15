@@ -27,8 +27,9 @@ fetch('https://api.spotify.com/v1/search?q=Bad%20Bunny&type=artist', {
 function renderImage(artists) {
   let div = document.createElement('div');
   let img = document.createElement('img');
+  // debugger;
   img.src = artists.items[0].images[0].url;
 
-  document.body.appendChild(div);
+  document.body.append(div);
   div.appendChild(img);
 }
