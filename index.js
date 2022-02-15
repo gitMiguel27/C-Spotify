@@ -1,62 +1,73 @@
-// var http = require("http");
+var accessToken = 'BQDyFq8HnA8VvPQE2CoCyEFWQGYZ9Udkhc1TR_NWhdI_upBZ2jmy_Wyf2I1O1C-SUHeE3xDPl5ghHiq0UWgeKfx1UdcjqSvI8FlwLyACWOan22pKxHczIlp61MdKM_lhNhJIlB4JsN8O-es';
 
-//   /* Create an HTTP server to handle responses */
+let clickableDiv = document.getElementById('searchResults'); 
 
-//   http.createServer(function(request, response) {
-//     response.writeHead(200, {"Content-Type": "text/plain"});
-//     response.write("Hello World");
-//     response.end();
-//   }).listen(8888);
+let artistId;
 
-var accessToken = 'BQAPcKN43KHJ12ZVjHKWOiypjvVPvSqpkWh-Pq8OgLWbKAXo9KsRcSHW-HSvq3Wy20lM_vi9uZ8jZEaHLxIl5HfbhBvboeIhMo3triRA9dVbKX1c2SvA5y3tVgs5BXZT0YHFSqgK3sXlXqY';
+let form = document.getElementById('form');
 
-fetch('https://api.spotify.com/v1/search?q=Bad%20Bunny&type=artist', {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + accessToken
-  }
-})
-// .then(response => response.json())
-// .then(artistsData => {
-//   console.log(artistsData);
-//   // console.log(artistsData.artists.items)
-//   let realBadBunny = artistsData.artists.items[0];
-//   renderImage(realBadBunny);
-// })
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  removeAllChildNodes(clickableDiv);
+  let searchArtist = event.target.aName.value;
+  
+  fetch(`https://api.spotify.com/v1/search?q=${searchArtist}&type=artist`, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + accessToken
+    }
+  })
+  .then(response => response.json())
+  .then(artistsData => {
+    // console.log(artistsData);
+    let items = artistsData.artists.items;
+    for(let i = 0; i < 3; i++) {
+      renderEachArtistsData(items[i]);
+    };
+  });
 
-// function renderImage(realBadBunny) {
-//   let div = document.createElement('div');
-//   let img = document.createElement('img');
-//   // debugger;
-//   img.src = realBadBunny.images[0].url;
-
-//   document.body.append(div);
-//   div.appendChild(img);
-// }
-
-.then(response => response.json())
-.then(artistsData => {
-  // console.log(artistsData);
-  // console.log(artistsData.artists);
-  // console.log(artistsData.artists.items);
-  let items = artistsData.artists.items;
-  for(let i = 0; i < 3; i++) {
-    renderEachArtistsData(items[i]);
-  };
+  form.reset();
 });
 
+
 function renderEachArtistsData(element) {
-  console.log(element.name, element.images[0]);
-  let div = document.createElement('div');
+  // console.log(element.name, element.images[0]);
+  let elementDiv = document.createElement('div');
+  
+  let artistId = element.id;
+  console.log(artistId);
+
   let img = document.createElement('img');
-  let name = document.createElement('p');
-  name.textContent = element.name;
-  // debugger;
   img.src = element.images[0].url;
 
-  document.body.append(div);
-  div.appendChild(name);
-  div.appendChild(img);
+  let name = document.createElement('p');
+  name.textContent = element.name;
+
+  elementDiv.appendChild(name);
+  elementDiv.appendChild(img);
+  elementDiv.addEventListener('click', event => {
+    // console.log('i was clicked!')
+    fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      }
+    })
+    .then(response => response.json())
+    .then(artist => {
+      
+    })
+  })
+
+  clickableDiv.append(elementDiv)
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 }
