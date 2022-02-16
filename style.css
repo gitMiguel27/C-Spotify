@@ -20,8 +20,8 @@ div#boxLeft {
     z-index: 100;
 }
 h1#artistDetailsName {
-    padding: 10px;
-    color:rgb(0, 0, 0);
+    padding: 5px;
+    color:rgb(255, 255, 255);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-style: normal;
     font-size: 50px;
@@ -56,4 +56,5 @@ div.searchResults p {
 .detailsContainer {
     float: left;
     padding: 5px;
+    color: rgb(255, 255, 255);
 }

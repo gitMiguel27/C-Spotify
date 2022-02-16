@@ -4,6 +4,8 @@ let clickableDiv = document.getElementById('searchResults');
 
 let artistId;
 
+let topTracksContainer = document.getElementById('topTracksContainer');
+
 let form = document.getElementById('form');
 
 form.addEventListener('submit', event => {
@@ -113,7 +115,21 @@ function grabArtistTopTracks(artist) {
   })
   .then(response => response.json())
   .then(topTracks => {
-    console.log(topTracks);
-    console.log(topTracks.tracks[0].preview_url);
+    let tracks = topTracks.tracks;
+    tracks.forEach(track => {
+      renderTopTracks(track);
+    });
   })
+}
+
+function renderTopTracks(track) {
+  let trackPreview = document.createElement('a')
+  trackPreview.href = track.preview_url;
+
+  topTracksContainer.appendChild(trackPreview);
+  
+  let trackImage = document.createElement('img');
+  trackImage.src = track.album.images[2].url;
+
+  topTracksContainer.appendChild(trackImage);
 }
