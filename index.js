@@ -1,4 +1,4 @@
-var accessToken = 'BQCKpotF5FPsM1bG66XR-42feFtLDBHlWxRC_Lfeq3j3kzNnPla_AirGT-saze6rApeC5ucoqsauo7EDHPG2GwAz1P9tn8PNeNbrgGro-WHX-Y8_o6IYK6zCSlsMzdnJgNNOm53ww6-gcyk';
+var accessToken = 'BQBlg0MpekVx94PrV7zMUY2enXepBV8hsl-jzPzSsM2FhuX1LqjcqUUgKIetwPSqUobpFcdxRLCPTGfhHwdXCmmKfu0VCQGTbldu90So3AyRfdIzNn3aavr10FsWWPk91XpFh0tQaKqQxEE';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
