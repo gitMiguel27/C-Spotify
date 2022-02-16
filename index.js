@@ -1,4 +1,4 @@
-var accessToken = 'BQBlg0MpekVx94PrV7zMUY2enXepBV8hsl-jzPzSsM2FhuX1LqjcqUUgKIetwPSqUobpFcdxRLCPTGfhHwdXCmmKfu0VCQGTbldu90So3AyRfdIzNn3aavr10FsWWPk91XpFh0tQaKqQxEE';
+var accessToken = 'BQBxEAN2r6BR4loGcT4aDWLJh1Jiaz-WSVZCN2sS-SpZQ99pjg2a5hU3KQ1ASmQASl4t8wsStgggS86HdDQV3CZB-ew7RdeaQSWSoWb8C5THcbRzjqYnjkcauaULaL4C7DcZO24wJ1o-u8g';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -57,6 +57,7 @@ function renderEachArtistsData(element) {
   elementDiv.appendChild(name);
   elementDiv.addEventListener('click', event => {
     // console.log('i was clicked!')
+    removeAllChildNodes(elementDiv);
     fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
       method: 'GET',
       headers: {
@@ -94,6 +95,7 @@ function grabArtistDetails(artist) {
   let image = document.getElementById('detailImage');
   image.src = artistImage;
 
+  // ASK TEACHER FOR HOW TO REPLACE HTML H2'S with what we are creating below: !!!!!!!!
   let name = document.getElementById('artistDetailsName');
   name.textContent = artistName;
   
@@ -116,6 +118,7 @@ function grabArtistTopTracks(artist) {
   .then(response => response.json())
   .then(topTracks => {
     let tracks = topTracks.tracks;
+    removeAllChildNodes(topTracksContainer);
     tracks.forEach(track => {
       console.log(track.id);
       renderTopTracks(track);
@@ -125,20 +128,15 @@ function grabArtistTopTracks(artist) {
 
 function renderTopTracks(track) {
   let trackEmbed = document.createElement('div');
-  trackEmbed.id = 'topTrackEmbed';
+  trackEmbed.className = 'topTrackEmbed';
   let trackId = track.id;
   trackEmbed.innerHTML = 
-    `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`
+    `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator" width="250%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`
 
+  let heartLike = document.createElement('div');
+  heartLike.className = 'heart'
+  heartLike.textContent = "\u2661";
+
+  trackEmbed.appendChild(heartLike);
   topTracksContainer.appendChild(trackEmbed);
-
-  let trackPreview = document.createElement('a')
-  trackPreview.href = track.preview_url;
-
-  topTracksContainer.appendChild(trackPreview);
-  
-  // let trackImage = document.createElement('img');
-  // trackImage.src = track.album.images[2].url;
-
-  // topTracksContainer.appendChild(trackImage);
 }
