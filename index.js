@@ -117,19 +117,28 @@ function grabArtistTopTracks(artist) {
   .then(topTracks => {
     let tracks = topTracks.tracks;
     tracks.forEach(track => {
+      console.log(track.id);
       renderTopTracks(track);
     });
   })
 }
 
 function renderTopTracks(track) {
+  let trackEmbed = document.createElement('div');
+  trackEmbed.id = 'topTrackEmbed';
+  let trackId = track.id;
+  trackEmbed.innerHTML = 
+    `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`
+
+  topTracksContainer.appendChild(trackEmbed);
+
   let trackPreview = document.createElement('a')
   trackPreview.href = track.preview_url;
 
   topTracksContainer.appendChild(trackPreview);
   
-  let trackImage = document.createElement('img');
-  trackImage.src = track.album.images[2].url;
+  // let trackImage = document.createElement('img');
+  // trackImage.src = track.album.images[2].url;
 
-  topTracksContainer.appendChild(trackImage);
+  // topTracksContainer.appendChild(trackImage);
 }

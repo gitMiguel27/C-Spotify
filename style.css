@@ -1,9 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    /* background-image: url("https://www.digitalmusicnews.com/wp-content/uploads/2021/10/what-are-fake-streams-spotify-feat.jpeg"); */
-    /* background-color: #cccccc; */
-    /* filter: blur(8px); */
+    background-color: black;
 }
 div#wholeBody {
     /* background-image: linear-gradient(to bottom right, rgb(42, 148, 51), rgb(0, 0, 0)); */
@@ -65,4 +63,9 @@ div.searchResults p {
     padding: 5px;
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 2px black, 0 0 25px rgb(0, 0, 0), 0 0 5px black;
+}
+
+#topTracksContainer {
+    position: absolute;
+    padding-top: 375px;
 }
