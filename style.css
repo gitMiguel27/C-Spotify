@@ -3,7 +3,7 @@ body {
     padding: 0;
 }
 div#wholeBody {
-    background-image: linear-gradient(to bottom right, rgb(30, 112, 37), rgb(3, 10, 4));
+    background-image: linear-gradient(to bottom right, rgb(42, 148, 51), rgb(0, 0, 0));
     height: 100%;
     padding-left: 200px;
     width: 100%;
@@ -13,14 +13,18 @@ div#search {
     display: flex; 
 } 
 div#boxLeft { 
-    background-color: rgb(26, 26, 26); 
+    background-color: rgb(0, 0, 0); 
     width: 200px; 
     height: 100%;
     position: absolute;
     z-index: 100;
 }
-h2 {
+h1#artistDetailsName {
     padding: 10px;
+    color:rgb(0, 0, 0);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: normal;
+    font-size: 50px;
 }
 h1 {
     padding: 10px;
@@ -42,4 +46,14 @@ div.searchResults img {
 div.searchResults p {
     float: right;
     padding-left: 5px;
+}
+
+#detailImage {
+    height: 350px;
+    width: auto;
+}
+
+.detailsContainer {
+    float: left;
+    padding: 5px;
 }
