@@ -59,7 +59,7 @@ function renderEachArtistsData(element) {
     })
     .then(response => response.json())
     .then(artist => {
-      
+      console.log(artist);
     })
   })
 
