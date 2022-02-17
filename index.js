@@ -1,4 +1,4 @@
-var accessToken = 'BQCVmya191aOoTN-nIJ7uOKqIskB7sSVgjIhPF9UVBrbI17pWvBtc3tRm3U27VIHqsxJcCbGTymUXmZlEBxfLxJVxxdFbOIYwOzQ0M5VFXF6jDlRWwWIGz9QiSnwQhnOMSOj_Pk_jSFHxf8';
+var accessToken = 'BQDK4f3VUpjFf5iBlUuW_ZNirrJvuI6E18xVOjOAA3q8nvZ_tn8E1i6s_KJVi2zCRrv9evj41bQuNQdwW_oQVSI2f0IikADbTs7ocDJl_fxRNebNY1AQoG-Ipf-5CE21bHB0itYNtytIey0';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -68,6 +68,9 @@ function renderEachArtistsData(element) {
     .then(artist => { 
       grabArtistDetails(artist);
       grabArtistTopTracks(artist)
+
+      document.getElementById('headingFollowers').textContent = 'Followers';
+      document.getElementById('headingGenres').textContent = 'Genres';
     })
   })
   clickableDiv.append(elementDiv)
@@ -91,10 +94,10 @@ function grabArtistDetails(artist) {
   let image = document.getElementById('detailImage');
   image.src = artistImage;
 
-  // ASK TEACHER FOR HOW TO REPLACE HTML H2'S with what we are creating below: !!!!!!!!
   let name = document.getElementById('artistDetailsName');
   name.textContent = artistName;
   
+   // ASK TEACHER FOR HOW TO REPLACE HTML H2'S with what we are creating below: !!!!!!!! "Followers (new line) artistFollowers"
   let followers = document.getElementById('followers');
   followers.textContent = artistFollowers;
 
@@ -122,9 +125,9 @@ function grabArtistTopTracks(artist) {
 }
 
 function renderTopTracks(track) {
+  let trackId = track.id;
   let trackEmbed = document.createElement('div');
   trackEmbed.className = 'topTrackEmbed';
-  let trackId = track.id;
   trackEmbed.innerHTML = 
     `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/${trackId}?utm_source=generator" width="250%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`
 
@@ -135,19 +138,15 @@ function renderTopTracks(track) {
     if (heartLike.textContent === "\u2661") {
       heartLike.textContent = "\u2665";
       heartLike.style.fontSize = '40px';
-    } 
-    else if (heartLike.textContent === "\u2665") {
-      heartLike.textContent = "\u2661";
-      heartLike.style.fontSize = '30px';
+      addToLikedSongs(track, heartLike);
     }
-    addToLikedSongs(track);
   });
 
   trackEmbed.appendChild(heartLike);
   topTracksContainer.appendChild(trackEmbed);
 }
 
-function addToLikedSongs(track) {
+function addToLikedSongs(track, heartLike) {
   let likedSongDiv = document.createElement('div');
   likedSongDiv.className = 'likedSong';
 
@@ -165,7 +164,7 @@ function addToLikedSongs(track) {
   commentFormInput.placeholder = 'Write a comment...';
   let commentFormButton = document.createElement('input');
   commentFormButton.type = 'submit';
-  commentFormButton.value = 'Submit';
+  commentFormButton.value = 'Comment';
 
   commentForm.appendChild(commentFormInput);
   commentForm.appendChild(commentFormButton);
@@ -180,6 +179,15 @@ function addToLikedSongs(track) {
     buildComment(commentFormInput, likedSongDiv)
     document.querySelector('.commentForm').reset();
   })
+  let clickListener = event => {
+    if (heartLike.textContent === "\u2665") {
+      heartLike.textContent = "\u2661";
+      heartLike.style.fontSize = '30px';
+      removeAllChildNodes(likedSongDiv);
+      heartLike.removeEventListener('click', clickListener);
+      };
+    }
+  heartLike.addEventListener('click', clickListener);
 };
 
 function buildComment(commentFormInput, likedSongDiv) {

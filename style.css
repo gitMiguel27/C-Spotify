@@ -9,6 +9,7 @@ div#wholeBody {
 }
 div#search { 
     display: flex; 
+
 } 
 div#boxLeft { 
     background-color: rgb(0, 0, 0); 
@@ -16,6 +17,8 @@ div#boxLeft {
     height: 250%;
     position: absolute;
     z-index: 100;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: normal;
 }
 h1#artistDetailsName {
     padding: 10px;
@@ -33,6 +36,23 @@ h1 {
 form {
     padding: 10px;
     color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-shadow: 1px 1px 2px black, 0 0 25px rgb(0, 0, 0), 0 0 10px black;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-style: normal;
+}
+#aName {
+    width: 153.25px;
+}
+#artistSubmit {
+    color: rgb(255, 255, 255);
+    font-style: normal;
+    font-weight: bold;
+    border-color: black;
+    box-shadow: 1px 1px 2px black, 0 0 15px rgb(0, 0, 0), 0 0 5px black;
+    background-color: rgb(0, 0, 0);
+    width: 161.25px;
+    margin-top: 10px;
 }
 div.searchResults {
     float: left;
@@ -40,8 +60,9 @@ div.searchResults {
     padding-top: 12px;
 }
 div.searchResults img {
-    height: 50px;
+    height: 81px;
     width: auto;
+    border-radius: 8px;
 }
 div.searchResults p {
     float: right;
@@ -53,6 +74,8 @@ div.searchResults p {
 #detailImage {
     height: 350px;
     width: auto;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px black, 0 0 25px rgb(0, 0, 0), 0 0 5px black;
 }
 
 .detailsContainer {
