@@ -1,10 +1,12 @@
-var accessToken = 'BQBxEAN2r6BR4loGcT4aDWLJh1Jiaz-WSVZCN2sS-SpZQ99pjg2a5hU3KQ1ASmQASl4t8wsStgggS86HdDQV3CZB-ew7RdeaQSWSoWb8C5THcbRzjqYnjkcauaULaL4C7DcZO24wJ1o-u8g';
+var accessToken = 'BQCVmya191aOoTN-nIJ7uOKqIskB7sSVgjIhPF9UVBrbI17pWvBtc3tRm3U27VIHqsxJcCbGTymUXmZlEBxfLxJVxxdFbOIYwOzQ0M5VFXF6jDlRWwWIGz9QiSnwQhnOMSOj_Pk_jSFHxf8';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
 let artistId;
 
 let topTracksContainer = document.getElementById('topTracksContainer');
+
+let likedSongsBox = document.getElementById('boxLeft');
 
 let form = document.getElementById('form');
 
@@ -23,7 +25,6 @@ form.addEventListener('submit', event => {
   })
   .then(response => response.json())
   .then(artistsData => {
-    // console.log(artistsData);
     let items = artistsData.artists.items;
     for(let i = 0; i < 3; i++) {
       renderEachArtistsData(items[i]);
@@ -41,11 +42,9 @@ function removeAllChildNodes(parent) {
 }
 
 function renderEachArtistsData(element) {
-  // console.log(element.name, element.images[0]);
   let elementDiv = document.createElement('div');
   elementDiv.className = 'searchResults';
   let artistId = element.id;
-  // console.log(artistId);
 
   let img = document.createElement('img');
   img.src = element.images[0].url;
@@ -56,7 +55,6 @@ function renderEachArtistsData(element) {
   elementDiv.appendChild(img);
   elementDiv.appendChild(name);
   elementDiv.addEventListener('click', event => {
-    // console.log('i was clicked!')
     removeAllChildNodes(elementDiv);
     fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
       method: 'GET',
@@ -68,7 +66,6 @@ function renderEachArtistsData(element) {
     })
     .then(response => response.json())
     .then(artist => { 
-      console.log(artist);
       grabArtistDetails(artist);
       grabArtistTopTracks(artist)
     })
@@ -90,7 +87,6 @@ function grabArtistDetails(artist) {
     genreString += artist.genres[g] + ', ';
     }
   };
-  // console.log(genreString);
 
   let image = document.getElementById('detailImage');
   image.src = artistImage;
@@ -120,7 +116,6 @@ function grabArtistTopTracks(artist) {
     let tracks = topTracks.tracks;
     removeAllChildNodes(topTracksContainer);
     tracks.forEach(track => {
-      console.log(track.id);
       renderTopTracks(track);
     });
   })
@@ -136,7 +131,60 @@ function renderTopTracks(track) {
   let heartLike = document.createElement('div');
   heartLike.className = 'heart'
   heartLike.textContent = "\u2661";
+  heartLike.addEventListener('click', event => {
+    if (heartLike.textContent === "\u2661") {
+      heartLike.textContent = "\u2665";
+      heartLike.style.fontSize = '40px';
+    } 
+    else if (heartLike.textContent === "\u2665") {
+      heartLike.textContent = "\u2661";
+      heartLike.style.fontSize = '30px';
+    }
+    addToLikedSongs(track);
+  });
 
   trackEmbed.appendChild(heartLike);
   topTracksContainer.appendChild(trackEmbed);
+}
+
+function addToLikedSongs(track) {
+  let likedSongDiv = document.createElement('div');
+  likedSongDiv.className = 'likedSong';
+
+  let likedSongImage = document.createElement('img');
+  likedSongImage.src = track.album.images[2].url;
+
+  let likedSongName = document.createElement('p');
+  likedSongName.textContent = track.name;
+
+  let commentForm = document.createElement('form');
+  commentForm.className = 'commentForm';
+  let commentFormInput = document.createElement('input');
+  commentFormInput.className = 'trackComment';
+  commentFormInput.type = 'text';
+  commentFormInput.placeholder = 'Write a comment...';
+  let commentFormButton = document.createElement('input');
+  commentFormButton.type = 'submit';
+  commentFormButton.value = 'Submit';
+
+  commentForm.appendChild(commentFormInput);
+  commentForm.appendChild(commentFormButton);
+
+  likedSongDiv.appendChild(likedSongImage);
+  likedSongDiv.appendChild(likedSongName);
+  likedSongDiv.appendChild(commentForm);
+  likedSongsBox.appendChild(likedSongDiv);
+
+  document.querySelector('.commentForm').addEventListener('submit', event => {
+    event.preventDefault();
+    buildComment(commentFormInput, likedSongDiv)
+    document.querySelector('.commentForm').reset();
+  })
+};
+
+function buildComment(commentFormInput, likedSongDiv) {
+  let commentContainer = document.createElement('li');
+  commentContainer.textContent = commentFormInput.value;
+
+  likedSongDiv.appendChild(commentContainer);
 }
