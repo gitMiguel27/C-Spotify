@@ -1,4 +1,4 @@
-var accessToken = 'BQD7JUOxaXzAKGPINtGDjfsdPRVxwEcHi_DZlXzGxfVLSWOQU1Ms1LfkU2PAqxU-coTdXUmW8FmSSCcmlBlJN9LWWS0qsbQTyOMbHvq3OnulKUO4c3OcW6hoQykKLyVSJyOtx9TK-K4nBU4';
+var accessToken = 'BQC80fz_RJoNBP4cq5wPkGDeYAommtSlo9fAIsJ1oVZ6Og9X1joed0w6IjNzFXsO6GdL0iudAxe4n25Z34DlHB7E3ItAfM7X65tIri29qpHucXZlVMLXXdZxuGznTE8B8Pm6ML_svxIr0Ko';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -65,6 +65,7 @@ function renderEachArtistsData(element) {
     })
     .then(response => response.json())
     .then(artist => { 
+      console.log('i was clicked!')
       grabArtistDetails(artist);
       grabArtistTopTracks(artist)
 
@@ -183,6 +184,7 @@ function addToLikedSongs(track, heartLike) {
       heartLike.textContent = "\u2661";
       heartLike.style.fontSize = '30px';
       removeAllChildNodes(likedSongDiv);
+      likedSongDiv.style.border = 0;
       heartLike.removeEventListener('click', clickListener);
       };
     }
