@@ -149,6 +149,9 @@ function addToLikedSongs(track, heartLike) {
   let likedSongDiv = document.createElement('div');
   likedSongDiv.className = 'likedSong';
 
+  let imgNameDiv = document.createElement('div');
+  imgNameDiv.className = 'imgName';
+
   let likedSongImage = document.createElement('img');
   likedSongImage.src = track.album.images[2].url;
 
@@ -169,8 +172,9 @@ function addToLikedSongs(track, heartLike) {
   commentForm.appendChild(commentFormInput);
   commentForm.appendChild(commentFormButton);
 
-  likedSongDiv.appendChild(likedSongImage);
-  likedSongDiv.appendChild(likedSongName);
+  imgNameDiv.appendChild(likedSongImage);
+  imgNameDiv.appendChild(likedSongName);
+  likedSongDiv.appendChild(imgNameDiv);
   likedSongDiv.appendChild(commentForm);
   likedSongsBox.appendChild(likedSongDiv);
 
