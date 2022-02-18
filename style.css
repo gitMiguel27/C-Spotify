@@ -14,7 +14,7 @@ div#search {
 div#boxLeft { 
     background-color: rgb(0, 0, 0); 
     width: 200px; 
-    height: 250%;
+    height: 210%;
     position: absolute;
     z-index: 100;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -110,15 +110,12 @@ div.searchResults p {
 
 p {
     color:rgb(255, 255, 255);
+    padding-top: 12px;
 }
 
 #boxLeft p {
     display: block;
     padding-left: 64px;
-}
-
-.likedSong {
-    /* display: flex; */
 }
 
 li {

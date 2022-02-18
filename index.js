@@ -1,4 +1,4 @@
-var accessToken = 'BQAi2TnVk7QmB40BhL4xVGSDQ9YMDbL9RjKjtm2NenYapX7KglZMnpzje26UhV9HrE6zpaIAOUZyCfZU93js9sjzxkRxrB4NuUxQQcSTlDrseUwyOf0PDXM6fyf7hrPlmIpVZVTcU15671M';
+var accessToken = 'BQD7JUOxaXzAKGPINtGDjfsdPRVxwEcHi_DZlXzGxfVLSWOQU1Ms1LfkU2PAqxU-coTdXUmW8FmSSCcmlBlJN9LWWS0qsbQTyOMbHvq3OnulKUO4c3OcW6hoQykKLyVSJyOtx9TK-K4nBU4';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -26,7 +26,7 @@ form.addEventListener('submit', event => {
   .then(response => response.json())
   .then(artistsData => {
     let items = artistsData.artists.items;
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 4; i++) {
       renderEachArtistsData(items[i]);
       
     };
