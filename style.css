@@ -126,9 +126,12 @@ li {
     padding-bottom: 5px;
 }
 .commentFormStyle {
-    /* position: relative; top: -100px;  */
+    /* position: relative; top: -70px; */
     display: flex;
 }
 #boxLeft img {
     border: 2px solid rgba(255, 255, 255, 0.76);
+}
+.likedSong li {
+    /* position: relative; top: -70px; */
 }
