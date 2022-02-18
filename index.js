@@ -1,4 +1,4 @@
-var accessToken = 'BQDK4f3VUpjFf5iBlUuW_ZNirrJvuI6E18xVOjOAA3q8nvZ_tn8E1i6s_KJVi2zCRrv9evj41bQuNQdwW_oQVSI2f0IikADbTs7ocDJl_fxRNebNY1AQoG-Ipf-5CE21bHB0itYNtytIey0';
+var accessToken = 'BQAi2TnVk7QmB40BhL4xVGSDQ9YMDbL9RjKjtm2NenYapX7KglZMnpzje26UhV9HrE6zpaIAOUZyCfZU93js9sjzxkRxrB4NuUxQQcSTlDrseUwyOf0PDXM6fyf7hrPlmIpVZVTcU15671M';
 
 let clickableDiv = document.getElementById('searchResults'); 
 
@@ -31,7 +31,6 @@ form.addEventListener('submit', event => {
       
     };
   });
-
   form.reset();
 });
 
@@ -97,7 +96,6 @@ function grabArtistDetails(artist) {
   let name = document.getElementById('artistDetailsName');
   name.textContent = artistName;
   
-   // ASK TEACHER FOR HOW TO REPLACE HTML H2'S with what we are creating below: !!!!!!!! "Followers (new line) artistFollowers"
   let followers = document.getElementById('followers');
   followers.textContent = artistFollowers;
 
