@@ -155,7 +155,8 @@ function addToLikedSongs(track, heartLike) {
   likedSongName.textContent = track.name;
 
   let commentForm = document.createElement('form');
-  commentForm.className = 'commentForm';
+  commentForm.id = `${track.id}Comment`;
+  commentForm.className = 'commentFormStyle'
   let commentFormInput = document.createElement('input');
   commentFormInput.className = 'trackComment';
   commentFormInput.type = 'text';
@@ -172,10 +173,10 @@ function addToLikedSongs(track, heartLike) {
   likedSongDiv.appendChild(commentForm);
   likedSongsBox.appendChild(likedSongDiv);
 
-  document.querySelector('.commentForm').addEventListener('submit', event => {
+  document.getElementById(`${track.id}Comment`).addEventListener('submit', event => {
     event.preventDefault();
     buildComment(commentFormInput, likedSongDiv)
-    document.querySelector('.commentForm').reset();
+    document.getElementById(`${track.id}Comment`).reset();
   })
   let clickListener = event => {
     if (heartLike.textContent === "\u2665") {
